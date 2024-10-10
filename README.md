@@ -6,8 +6,8 @@ This project is an AI-powered business analytics tool that leverages natural lan
 
 The project consists of the following main components:
 
-1. `main.py`: The entry point of the application.
-2. `handlers/chat_model_start_handler.py`: Handles the initialization and execution of the chat model.
+1. `main.py`: The entry point of the application. It now uses the `ChatOpenAI` model from `langchain_openai` and integrates a new `ChatModelStartHandler` for handling chat model start events.
+2. `handlers/chat_model_start_handler.py`: Handles the initialization and execution of the chat model. It includes a new `ChatModelStartHandler` class that provides detailed logging of messages exchanged with the AI model.
 3. `tools/sql.py`: Contains functions for executing SQL queries and retrieving data from the database.
 4. `tools/report.py`: Provides functionality for generating HTML reports based on the query results.
 5. `top_5_users_by_revenue.html`: An example HTML report showing the top 5 users by revenue.
@@ -59,16 +59,11 @@ The project consists of the following main components:
 
 ### main.py
 
-This is the entry point of the application. It sets up the necessary configurations, initializes the chat model, and handles user input and output.
+This is the entry point of the application. It sets up the necessary configurations, initializes the chat model using `ChatOpenAI`, and handles user input and output. The script now includes a `ChatModelStartHandler` to log the start of chat model interactions and uses a new method to create the agent with `create_openai_functions_agent`.
 
 ### handlers/chat_model_start_handler.py
 
-This module is responsible for initializing and running the chat model. It likely contains functions to:
-
-- Load the pre-trained language model
-- Process user input
-- Generate SQL queries based on natural language prompts
-- Coordinate the execution of queries and report generation
+This module is responsible for initializing and running the chat model. It includes the `ChatModelStartHandler` class, which logs detailed information about the messages exchanged with the AI model, including system, human, AI, and function call messages, using the `boxen` library for formatted output.
 
 ### tools/sql.py
 
