@@ -54,15 +54,13 @@ executor = AgentExecutor(
 )
 
 def main():
-    # Initial input
-    executor.invoke({
-        "input": "Write a report on the top 5 most popular products by revenue."
-    })
-
-    # Subsequent input, maintaining context
-    executor.invoke({
-        "input": "Do the same for the users"
-    })
+    while True:
+        user_input = input("Enter your query (or type 'exit' to quit): ")
+        if user_input.lower() == 'exit':
+            break
+        executor.invoke({
+            "input": user_input
+        })
 
 # Run the main function
 if __name__ == "__main__":
